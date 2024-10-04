@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" th:href="@{/css/regular.css}">
+</head>
+<body>
+
+<div th:insert="fragments/header.html"></div>
+
+<!-- Player Information Section -->
+<section class="py-5">
+    <div class="container">
+        <h1 class="display-5 text-center mb-4">Player Information</h1>
+
+        <!-- Stats Overview -->
+        <div class="row text-center mb-5">
+            <div class="col-md-4">
+                <h4>Total Played Games</h4>
+                <p class="display-6" id="totalGames" th:text="${@loggedPlayer.getPlayedGames()}"></p>
+            </div>
+            <div class="col-md-4">
+                <h4>Total Kills</h4>
+                <p class="display-6" id="totalKills" th:text="${@loggedPlayer.getKills()}"></p>
+            </div>
+            <div class="col-md-4">
+                <h4>Total Deaths</h4>
+                <p class="display-6" id="totalDeaths" th:text="${@loggedPlayer.getKills()}"></p>
+            </div>
+        </div>
+
+        <!-- Equipment Section -->
+        <h4 class="text-center mb-4">Player Equipment</h4>
+        <!-- <div class="flex-column"> -->
+        <div class="col">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>First Name:</strong>
+                    <p th:text="${@loggedPlayerAuthorization.getFirstName()}"></p></li>
+                <!--                <li class="list-group-item d-flex">-->
+                <!--                    <label for="rifle" class="form-label"><strong>Rifle:</strong></label>-->
+                <!--                    <input type="text" class="form-control" id="rifle" placeholder="Enter your rifle" value="M4A1 Carbine">-->
+                <!--                </li>-->
+                <li class="list-group-item"><strong>Last Name:</strong>
+                    <p th:text="${@loggedPlayerAuthorization.getLastName()}"></p></li>
+                <li class="list-group-item"><strong>Email:</strong>
+                    <p th:text="${@loggedPlayerAuthorization.getEmail()}"></p></li>
+                <li class="list-group-item"><strong>City:</strong>
+                    <p th:text="${@loggedPlayerAuthorization.getCity()}"></p></li>
+            </ul>
+        </div>
+        <div class="col">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Gloves:</strong> Full Finger Tactical Gloves</li>
+                <li class="list-group-item"><strong>Mouth Protector:</strong> Mesh Face Mask</li>
+                <li class="list-group-item"><strong>Radio:</strong> Motorola T600 H2O</li>
+            </ul>
+        </div>
+        <!-- </div> -->
+
+        <!-- Log Out Button -->
+        <!--        <div class="d-flex justify-content-center mt-5">-->
+        <!--            <a href="/static/templates/test.html" class="btn btn-danger btn-lg">Reset info</a>-->
+        <!--        </div>-->
+
+        <!-- Log Out Button -->
+        <div class="d-flex justify-content-center mt-5">
+            <!--            <form th:action="@{/index}" th:method="POST">-->
+            <form th:href="@{/index}" th:action="${@loggedPlayerAuthorization.defaultReset()}">
+                <button type="submit" class="btn">LOG OUT</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div th:insert="fragments/footer.html"></div>
+
+</body>
+</html>
