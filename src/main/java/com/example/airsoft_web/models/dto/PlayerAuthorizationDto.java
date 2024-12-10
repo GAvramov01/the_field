@@ -16,8 +16,7 @@ public class PlayerAuthorizationDto {
 
     private String email;
 
-    private City city;
+    private City city = new City();
 
     private PlayerDto player;
-
 }

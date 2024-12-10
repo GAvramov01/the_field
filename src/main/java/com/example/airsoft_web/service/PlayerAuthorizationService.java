@@ -9,7 +9,12 @@ public interface PlayerAuthorizationService {
 
     public PlayerAuthorization playerRegistration(PlayerAuthorizationDto playerAuthorizationDTO);
 
-    boolean login(PlayerAuthorizationDto playerAuthorizationDTO, HttpSession session);
+    boolean loginPlayer(PlayerAuthorizationDto playerAuthorizationDTO, HttpSession session);
 
     void logout();
+
+    public PlayerAuthorization updatePlayerInfo(PlayerAuthorizationDto playerAuthorizationDTO);
+
+    public PlayerAuthorization findPlayerById(Long id);
+
 }

@@ -1,13 +1,19 @@
 package com.example.airsoft_web.models.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
+@Data
 @Table(name = "cities")
 public class City extends BaseEntity {
 
@@ -38,12 +44,15 @@ public class City extends BaseEntity {
     @Column(name = "population_proper")
     private String populationProper;
 
-    @OneToOne(mappedBy = "city")
-    private PlayerAuthorization playerAuthorisation;
+    @OneToMany(mappedBy = "city")
+    private List<PlayerAuthorization> playerAuthorisation;
 
-    @OneToOne(mappedBy = "city")
-    private Organizer organizer;
+    //    @ManyToOne
+//    @JoinColumn(name = "cities")
+//    private Organizer organizer;
+    @OneToMany(mappedBy = "city")
+    private List<Organizer> organizers;
 
-    @OneToOne(mappedBy = "city")
-    private Tournament tournament;
+    @OneToMany(mappedBy = "city")
+    private List<Tournament> tournament;
 }

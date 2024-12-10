@@ -32,5 +32,7 @@ public class CityDto {
     @JsonProperty("population")
     private String population;
 
+    @JsonProperty("population_proper")
+    private String populationProper;
 
 }

@@ -6,4 +6,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrganizerRepository extends JpaRepository<Organizer, Long> {
+
+    Organizer findByEmail(String email);
+
+    Organizer findById(long id);
+
+    Organizer findByEmailAndPassword(String email, String password);
+
+    boolean existsByEmail(String email);
 }

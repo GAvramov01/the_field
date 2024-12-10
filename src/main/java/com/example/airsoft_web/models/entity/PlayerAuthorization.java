@@ -4,11 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "player_authorisations")
+@Table(name = "player_authorizations")
 public class PlayerAuthorization extends BaseEntity {
 
     @Column(name = "first_name", nullable = false)
@@ -20,10 +22,14 @@ public class PlayerAuthorization extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
+    @Email
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @Column(name = "create_date_player", nullable = false)
+    private LocalDate createDatePlayer;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id")
     private City city;
 

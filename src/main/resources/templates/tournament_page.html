@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Field Website</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:insert="fragments/header.html"></div>
+
+<!--Check if any tournaments exist-->
+<div th:if="${#lists.isEmpty(tournaments)}">
+    <p class="text-center text-muted">No tournaments have been created yet.</p>
+</div>
+
+<div th:if="${!#lists.isEmpty(tournaments)}" th:each="tournament: ${tournaments}">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${tournament.tournamentName}"></h5>
+            <p class="card-text" th:text="${@loggedOrganizer.clubName}"></p>
+            <p class="card-text" th:text="${tournament.info}"></p>
+        </div>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Start Date: <p
+                    th:text="${tournament.startDate}"></p></li>
+            <li class="list-group-item">Coordinates: <p th:text="${tournament.coordinates}"></p></li>
+            <li class="list-group-item">Measurement: <p
+                    th:text="${tournament.measurement}"></p></li>
+            <li class="list-group-item">Briefing: <p
+                    th:text="${tournament.briefing}"></p></li>
+            <li class="list-group-item">Price: <p th:text="${tournament.price}"></p></li>
+            <li class="list-group-item">City: <p th:text="${tournament.city.name}"></p></li>
+        </ul>
+        <div class="card-body">
+            <button type="submit" class="btn btn-outline-success">Old Players</button>
+            <button type="submit" class="btn btn-outline-warning">New Players</button>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/footer.html"></div>
+<!-- Footer -->
+
+</body>
+</html>

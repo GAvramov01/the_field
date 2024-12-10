@@ -1,15 +1,18 @@
 package com.example.airsoft_web.config;
 
+import com.example.airsoft_web.models.dto.OrganizerDto;
 import com.example.airsoft_web.models.dto.PlayerAuthorizationDto;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+@SpringBootApplication
 public class ApplicationBeanConfiguration {
 
     @Bean
@@ -27,8 +30,12 @@ public class ApplicationBeanConfiguration {
 
     @Bean
     public PlayerAuthorizationDto playerAuthorizationDTO() {
-        PlayerAuthorizationDto playerAuthorizationDTO = new PlayerAuthorizationDto();
-        return playerAuthorizationDTO;
+        return new PlayerAuthorizationDto();
+    }
+
+    @Bean
+    public OrganizerDto organizerDto() {
+        return new OrganizerDto();
     }
 
     @Bean

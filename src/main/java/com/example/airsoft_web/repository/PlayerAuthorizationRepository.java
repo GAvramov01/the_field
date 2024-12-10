@@ -8,4 +8,10 @@ import org.springframework.stereotype.Repository;
 public interface PlayerAuthorizationRepository extends JpaRepository<PlayerAuthorization, Long> {
 
     PlayerAuthorization findByLastName(String lastName);
+
+    PlayerAuthorization findByEmail(String email);
+
+    PlayerAuthorization findById(long id);
+
+    boolean existsByEmail(String email);
 }
